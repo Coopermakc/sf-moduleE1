@@ -3,8 +3,6 @@ from unittest.mock import patch
 import app
 
 
-
-print(app.WORDS)
 VAL_CHAR = 'a'
 INVAL_CHAR = 1
 POS = [0, 2]
@@ -32,7 +30,8 @@ class Test(unittest.TestCase):
         self.assertEquals(res, False)
     
     @patch('app.fail', return_value=4)
-    def test_game_over(self, input):
+    @patch('app.get_input', return_value='x')
+    def test_game_over(self, input, input_):
         self.assertEquals(app.game(app.WORDS[1]), 1)
 
     def test_fail(self):
